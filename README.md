@@ -1,6 +1,6 @@
 # Hotel It on the Mountain
 
-This repository requires and has been tested on Ruby v2.7.4 and is based on Rails 5.2.8.
+This repository requires and has been tested on Ruby v3.2.2 and is based on Rails 7.0.6.
 
 RSpec and Shoulda-Matchers have been installed and set up.
 
