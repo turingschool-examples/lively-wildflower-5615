@@ -26,5 +26,16 @@ RSpec.describe Guest, type: :feature do
       expect(page).to have_content(@stay1.room.rate)
       expect(page).to have_content(@stay1.room.hotel.name)
     end
+
+    it 'can add a room to a guest' do
+      visit guest_path(@guest1)
+
+      expect(page).to have_content('Add a Room to this Guest')
+      fill_in 'room_id', with: @room2.id
+      click_button 'Add Room to Guest'
+
+      expect(current_path).to eq(guest_path(@guest1))
+      expect(page).to have_content(@stay2.room.suite)
+    end
   end
 end
