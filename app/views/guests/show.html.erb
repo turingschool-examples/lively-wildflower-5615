@@ -1,0 +1,11 @@
+<h1><%= @guest.name %></h1>
+
+<section class="guests">
+  <% @guest.guest_rooms.each do |guest_room| %>
+    <section id="guest-room-<%= guest_room.id %>">
+      <p><%= guest_room.room.suite %></p>
+      <p><%= guest_room.room.rate %></p>
+      <p><%= guest_room.room.hotel.name %></p>
+    </section>
+  <% end %>
+</section>
