@@ -42,5 +42,5 @@ room3.guests << guest6
 room4.guests << guest1
 room4.guests << guest2
 
-room4.guests << guest2
-room4.guests << guest4
+room5.guests << guest2
+room5.guests << guest4
