@@ -23,5 +23,14 @@ RSpec.describe Room, type: :model do
       expect(@daysinn_room_6.guest_count).to eq(2)
       expect(@hyatt_room_4.guest_count).to eq(0)
     end
+
+    it "#guests_distinct" do
+      @hank.rooms.push(@hyatt_room_3)
+      @hank.rooms.push(@hyatt_room_3)
+      @hank.rooms.push(@hyatt_room_3)
+      @barbie.rooms.push(@hyatt_room_3)
+
+      expect(@hyatt_room_3.guests_distinct).to eq([@hank, @barbie])
+    end
   end
 end
