@@ -19,6 +19,7 @@ room4 = Room.create!(rate: 100, suite: 'Standard', hotel: hotel2)
 # Create guests
 guest1 = Guest.create!(name: 'Charlize Theron', nights: 3)
 guest2 = Guest.create!(name: 'Keanu Reeves', nights: 2)
+guest3 = Guest.create!(name: 'Bob Ross', nights: 1)
 
 # Record the stays for these guests
 Stay.create!(room: room1, guest: guest1)
