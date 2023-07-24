@@ -29,40 +29,38 @@ RSpec.describe "guests" do
   describe "show page" do
     it "shows guest's name, list of all the rooms they stayed in" do
       visit "/guests/#{@guest_1.id}"
-      
+
       within "#Facts" do
         expect(page).to have_content(@guest_1.name)
       end
 
       within "#Rooms" do
-        expect(page).to have_content(@room_1.name)
-        expect(page).to have_content(@room_2.name)
-        expect(page).to_not have_content(@room_3.name)
-        expect(page).to_not have_content(@room_4.name)
+        expect(page).to have_content(@room_1.suite)
+        expect(page).to have_content(@room_2.suite)
+        expect(page).to_not have_content(@room_3.suite)
+        expect(page).to_not have_content(@room_4.suite)
       end
     end
 
     it "for each room a guest has stayed in will show the rooms suite, nightly rate, and name of hotel it belongs to" do
       visit "/guests/#{@guest_1.id}"
-      expect(page).to_not have_content(@room_3.name)
+      expect(page).to_not have_content(@room_3.rate)
       expect(page).to_not have_content(@room_3.suite)
-      expect(page).to_not have_content(@room_4.name)
+      expect(page).to_not have_content(@room_4.rate)
       expect(page).to_not have_content(@room_4.suite)
 
       within "#Economy" do
-        expect(page).to have_content(@room_1.name)
         expect(page).to have_content(@room_1.suite)
         expect(page).to have_content(@room_1.rate)
-        expect(page).to have_content(@room_1.hotel)
-        expect(page).to_not have_content(@room_2.name)
+        expect(page).to have_content(@room_1.hotel.name)
+        expect(page).to_not have_content(@room_2.suite)
       end
 
       within "#Deluxe" do
-        expect(page).to have_content(@room_2.name)
         expect(page).to have_content(@room_2.suite)
         expect(page).to have_content(@room_2.rate)
-        expect(page).to have_content(@room_2.hotel)
-        expect(page).to_not have_content(@room_1.name)
+        expect(page).to have_content(@room_2.hotel.name)
+        expect(page).to_not have_content(@room_1.suite)
       end
     end  
   end
