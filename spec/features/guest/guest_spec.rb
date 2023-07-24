@@ -6,10 +6,10 @@ RSpec.describe Guest, type: :feature do
 # I see the guest's name
 # And I see a list of all the rooms they've stayed in
 # including the room's suite, nightly rate, and the name of the hotel that it belongs to.
+  let(:hotel_1) { Hotel.create!(name: "Hilton", location: "Denver") }
+  let(:room_1) { Room.create!(rate: 100, suite: "The Blue Room", hotel_id: hotel_1.id) }
 
   it "can see guest's name and a list of rooms they have stayed in" do
-    hotel_1 = Hotel.create!(name: "Hilton", location: "Denver")
-    room_1 = Room.create!(rate: 100, suite: "The Blue Room", hotel_id: hotel_1.id)
     room_2 = Room.create!(rate: 200, suite: "The Red Room", hotel_id: hotel_1.id)
     guest_1 = Guest.create(name: "Bob", nights: 3)
     guest_1.rooms << room_1
@@ -39,8 +39,6 @@ RSpec.describe Guest, type: :feature do
 # (You do not have to test for a sad path, for example if the ID submitted is not an existing room)
 # ```
   it "can add a room to a guest" do
-    hotel_1 = Hotel.create!(name: "Hilton", location: "Denver")
-    room_1 = Room.create!(rate: 100, suite: "The Blue Room", hotel_id: hotel_1.id)
     guest_1 = Guest.create(name: "Bob", nights: 3)
 
     visit "/guest/#{guest_1.id}"
