@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "guests" do
+RSpec.describe "rooms" do
   before :each do
     @hotel_1 = Hotel.create!(
       name: "Hilton",
@@ -11,7 +11,7 @@ RSpec.describe "guests" do
 
     @room_1 = @hotel_1.rooms.create!(rate: 125, suite: "Economy")
     @room_2 = @hotel_1.rooms.create!(rate: 175, suite: "Deluxe")
-    @room_3 = @hotel_2.rooms.create!(rate: 90, suite: "Single")
+    @room_3 = @hotel_2.rooms.create!(rate: 90, suite: "Single bed")
     @room_4 = @hotel_2.rooms.create!(rate: 135, suite: "Master")
     
     @guest_1 = Guest.create!(name: "Phillip", nights: 3)
@@ -26,64 +26,40 @@ RSpec.describe "guests" do
     @guest_room_5 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_1.id)
   end
 
-  describe "show page" do
-    it "shows guest's name, list of all the rooms they stayed in" do
-      visit "/guests/#{@guest_1.id}"
-
-      within "#Facts" do
-        expect(page).to have_content(@guest_1.name)
-      end
+  describe "index page" do
+    it "shows list of all rooms, including room's suite, nightly rate, hotel it belongs to, and number of guests that have stayed there" do
+      visit "/rooms"
 
       within "#Rooms" do
         expect(page).to have_content(@room_1.suite)
         expect(page).to have_content(@room_2.suite)
-        expect(page).to_not have_content(@room_3.suite)
-        expect(page).to_not have_content(@room_4.suite)
+        expect(page).to have_content(@room_3.suite)
+        expect(page).to have_content(@room_4.suite)
       end
-    end
-
-    it "for each room a guest has stayed in will show the rooms suite, nightly rate, and name of hotel it belongs to" do
-      visit "/guests/#{@guest_1.id}"
-      expect(page).to_not have_content(@room_3.rate)
-      expect(page).to_not have_content(@room_3.suite)
-      expect(page).to_not have_content(@room_4.rate)
-      expect(page).to_not have_content(@room_4.suite)
 
       within "#Economy" do
         expect(page).to have_content(@room_1.suite)
         expect(page).to have_content(@room_1.rate)
         expect(page).to have_content(@room_1.hotel.name)
-        expect(page).to_not have_content(@room_2.suite)
       end
 
       within "#Deluxe" do
         expect(page).to have_content(@room_2.suite)
         expect(page).to have_content(@room_2.rate)
         expect(page).to have_content(@room_2.hotel.name)
-        expect(page).to_not have_content(@room_1.suite)
       end
-    end  
 
-    it "has a form to add the guest to a room" do
-      visit "/guests/#{@guest_1.id}"
-
-      within "#Rooms" do
-        expect(page).to_not have_content(@room_3.suite)
-      end
-      
-      within "#Add_room" do
-        expect(page).to have_content("Please enter a valid room ID:")
-        fill_in("room_id", with: @room_3.id)
-        click_button("Submit")
-        expect(current_path).to eq("/guests/#{@guest_1.id}")
-      end
-      
-      within "#Rooms" do
+      within "#Single" do
         expect(page).to have_content(@room_3.suite)
         expect(page).to have_content(@room_3.rate)
         expect(page).to have_content(@room_3.hotel.name)
-        expect(page).to_not have_content(@room_4.suite)
       end
-    end  
+
+      within "#Master" do
+        expect(page).to have_content(@room_4.suite)
+        expect(page).to have_content(@room_4.rate)
+        expect(page).to have_content(@room_4.hotel.name)
+      end
+    end
   end
 end
