@@ -19,6 +19,16 @@
   <% end %>
 </div>
 
+<div id="add-room">
+  <h3>Add Room</h3>
+  <p>Enter the ID of an eisting room.</p>
+  <%= form_with url: "/guests/#{@guest.id}/rooms", method: :post, local: true do |f| %>
+    <%= f.label :room_id, "Room ID" %>
+    <%= f.text_field :room_id %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
+
 
 <!-- Idea if I have time: Maybe put in a partial for displaying a hotel? -->
 
