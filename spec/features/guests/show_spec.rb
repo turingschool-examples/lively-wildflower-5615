@@ -27,6 +27,7 @@ RSpec.describe 'guests', type: :feature do
       fill_in "Room ID:", with: @room2.id
       click_button "Add Room"
 
+      expect(current_path).to eq("/guests/#{@guest1.id}")
       expect(page).to have_content(@room2.hotel.name)
       expect(page).to have_content(@room2.suite)
       expect(page).to have_content("$#{@room2.rate}")
