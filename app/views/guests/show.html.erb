@@ -15,3 +15,10 @@
 <% end %>
 </div>
 
+<div id="Add_room">
+<%= form_with url: "/guests/#{@guest.id}/rooms", method: :post do |form| %>
+    <p> <%= form.label :room_id, "Please enter a valid room ID:" %> </p>
+    <p> <%= form.text_area :room_id %> </p>
+    <p> <%= form.submit "Submit" %> </p>
+<% end %>
+</div>
