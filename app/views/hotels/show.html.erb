@@ -1,0 +1,12 @@
+<h1>Hotel Show Page</h1>
+<h2><%= @hotel.name %></h2>
+<p><b>LOCATION: </b><%= @hotel.location %></p>
+
+<div id="unique_hotel_guests">
+  <h3>Unique Hotel Guests</h3>
+  <ul>
+    <% @hotel.unique_guests.each do |guest| %>
+      <li><%= guest.name %></li>
+    <% end %>
+  </ul>
+</div>
