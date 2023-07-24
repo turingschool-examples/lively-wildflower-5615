@@ -17,8 +17,6 @@ RSpec.describe "Show spec" do
 
     @room_4.guests << @sara
     @room_1.guests << @sara
-    @room_2.guests << @leo
-    @room_2.guests << @piper
     @room_2.guests << @paige
     @room_1.guests << @paige
   end
@@ -37,7 +35,7 @@ RSpec.describe "Show spec" do
       expect(page).to_not have_content(@piper.name)
       expect(page).to_not have_content(@room_3.suite)
     end
-    
+
     it "has the guests name and a list of all rooms they are in:shows room's suite, nightly rate, and the name of the hotel that it belongs to" do
       visit "/guests/#{@sara.id}"
 
@@ -46,6 +44,26 @@ RSpec.describe "Show spec" do
       expect(page).to have_content(@room_1.suite)
       expect(page).to have_content(@emma.name)
       expect(page).to have_content(@wolf.name)
+    end
+
+    # user story 2
+    it "I see a form to add a room to this guest, filed in with the id of and already existing room, its takes me back to show page." do 
+      visit "guests/#{@piper.id}"
+
+      fill_in "room_id", with: @room_2.id
+      click_on "submit"
+
+      expect(page).to have_content(@room_2.rate)
+      expect(page).to have_content(@room_2.suite)
+      expect(page).to have_content(@emma.name)
+      expect(current_path).to eq("/guests/#{@piper.id}")
+
+      fill_in "room_id", with: @room_1.id
+      click_on "submit"
+
+      expect(page).to have_content(@room_1.rate)
+      expect(page).to have_content(@room_1.suite)
+      expect(page).to have_content(@emma.name)
     end
   end
 end
