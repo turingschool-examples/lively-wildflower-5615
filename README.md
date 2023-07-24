@@ -48,16 +48,20 @@ You have been contracted by a luxurious mountain ski hotel & resort to keep trac
 
 * Hotels have a name and a location.
   * ex: `name: 'Echo Mountain Inn', location: 'Echo Mountain'`
+
 * Rooms have a rate (price per night), and a suite designation. (For simplicity, let's assume the rate is a whole dollar price and use an integer.)
   * ex: `rate: 125, suite: "Presidential"`
+
 * Guests have a name and the number of nights they'll be staying.
   * ex: `name: 'Charlize Theron', nights: 3`
 
 ## Model Setup
-* Hotels have many Rooms. 
-* Rooms belong to a Hotel.
-* Guests have many Rooms.
-* Rooms have many Guests.
+* Hotels have many Rooms. Parent/Child 1:M
+* Rooms belong to a Hotel. Child/Parent M:1
+* Guests have many Rooms. Many to Many
+* Rooms have many Guests. Many to Many
+
+Guest_Rooms is a join table that has a column for guest_id and room_id.
 
 Some of the initial model set up and testing has been done for you. Make sure your models & relationships are ready before starting user stories. You do not need to test for or create any model validations. 
 
