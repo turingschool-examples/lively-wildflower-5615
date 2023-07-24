@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 
   # Guest
   get "guest/:id", to: "guests#show"
+  post "guest/:id", to: "guest_rooms#create"
 end

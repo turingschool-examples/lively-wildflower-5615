@@ -11,3 +11,10 @@
     <br>
 <% end %>
 </section>
+<section id="room_form">
+<%= form_with url: "/guest/#{@guest.id}", method: :post, local: true do |form| %>
+    <br>
+    <%= form.label :room_id %>
+    <%= form.text_field :room_id %>
+    <%= form.submit "Add Room" %>
+<% end %>
