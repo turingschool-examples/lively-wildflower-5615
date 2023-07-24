@@ -1,11 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Room, type: :model do
-  describe "relationships" do
-    it { should belong_to :hotel }
-    it { should have_many :guest_rooms }
-    it { should have_many(:guests).through(:guest_rooms)}
-  end
+RSpec.describe "index spec" do
   before(:each) do
     @emma = Hotel.create!(name: "Hotel Emma", location: "San Antonio")
     @wolf = Hotel.create!(name: "Great Wolf Lodge", location: "Dallas")
@@ -20,21 +15,22 @@ RSpec.describe Room, type: :model do
     @piper = Guest.create!(name: "Piper", nights: 3)
     @paige = Guest.create!(name: "Paige", nights: 1)
 
-    @room_1.guests << @sara
-    @room_1.guests << @paige
-    @room_2.guests << @paige
-    @room_3.guests << @paige
     @room_4.guests << @sara
+    @room_3.guests << @leo
+    @room_3.guests << @piper
+    @room_1.guests << @sara
+    @room_2.guests << @paige
+    @room_1.guests << @paige
   end
 
-  describe "Instance methods" do
-    describe "#guest_count" do
-      it "counts the number of guests in a room" do 
-        expect(@room_1.guest_count).to eq(2)
-        expect(@room_2.guest_count).to eq(1)
-        expect(@room_3.guest_count).to eq(1)
-        expect(@room_4.guest_count).to eq(1)
-      end
+  describe "when visiting the hotel show page" do 
+    xit "I see a unique list of all guests that have stayed at this hotel" do 
+      visit "/hotels/#{@emma.id}"
+
+      expect(page).to have_content(@sara.name)
+      expect(page).to have_content(@paige.name)
+      expect(page).to_not have_content(@piper.name)
+      expect(page).to_not have_content(@leo.name)
     end
   end
 end
