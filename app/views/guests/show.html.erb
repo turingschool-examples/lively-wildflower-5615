@@ -2,8 +2,9 @@
 <p>rooms:</p>
 <ul>
   <% @guest.rooms.each do |room| %>
-  <li><%= room.rate %>$ per night</li>
+  <p></p>
   <li><%= room.suite %></li>
+  <li><%= room.rate %>$ per night</li>
   <li><%= room.hotel.name %> hotel</li>
   <% end %>
 </ul>

@@ -9,6 +9,7 @@ RSpec.describe "Visitor Index" do
     @guest_1 = @room_1.guests.create!(name: "Steve", nights: 3)
     @guest_2 = @room_1.guests.create!(name: "Carl", nights: 3)
     @room_3 = @hotel_1.rooms.create!(rate: 25, suite: "1 bedroom")
+    @guest_3 = @room_1.guests.create!(name: "Greg", nights: 3)
     #GuestRoom.create!(rooms_id: @room_1.id, guests_id: @guest_1.id)
   end
 
@@ -21,8 +22,7 @@ RSpec.describe "Visitor Index" do
     expect(page).to have_content(@room_2.rate)
     expect(page).to have_content(@room_2.suite)
     expect(page).to have_content(@room_2.hotel.name)
-    expect(page).to have_content(2)
-
+    expect(page).to have_content(3)
     #I know I can use within blocks, I'm just writing the tests fast
   end
 end
