@@ -14,14 +14,14 @@ RSpec.describe "Guest Show page" do
     expect(page).to have_content("Guest Name: Jake Ryan")
 
 
-    within("#room-#{room_1.id}") do
+    within("#room-#{@room_1.id}") do
       expect(page).to have_content("Suite: Standard")
       expect(page).to have_content("Nightly Rate: $130")
       expect(page).to have_content("Hotel: Plaza, Meridian Islands")
     end
 
 
-    within("#room-#{room_2.id}") do
+    within("#room-#{@room_2.id}") do
       expect(page).to have_content("Suite: Presidential")
       expect(page).to have_content("Nightly Rate: $500")
       expect(page).to have_content("Hotel: Plaza, Meridian Islands")
