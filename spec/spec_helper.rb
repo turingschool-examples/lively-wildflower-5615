@@ -11,7 +11,25 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
-#
+def test_data
+  @motel_8 = Hotel.create!(name: "Motel 8", location: "Denver")
+  @hyatt = Hotel.create!(name: "Hyatt", location: "Denver")
+  @daysinn = Hotel.create!(name: "Days Inn", location: "Colorado Springs")
+
+  @room_1 = @motel_8.rooms.create!(rate: 25, suite: "Single")
+  @room_2 = @motel_8.rooms.create!(rate: 50, suite: "Double")
+  
+  @room_3 = @hyatt.rooms.create!(rate: 220, suite: "Queen")
+  @room_4 = @hyatt.rooms.create!(rate: 400, suite: "Executive")
+  
+  @room_5 = @daysinn.rooms.create!(rate: 100, suite: "Queen")
+  @room_6 = @daysinn.rooms.create!(rate: 150, suite: "King")
+
+  @billy = Guest.create!(name: "Billy", nights: 8)
+  @jane = Guest.create!(name: "Jane", nights: 2)
+  @hank = Guest.create!(name: "Hank", nights: 1)
+  @barbie = Guest.create!(name: "Barbie", nights: 3)
+end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
