@@ -1,0 +1,12 @@
+<h1><%= @guests.name %></h1>
+<p>Suite: <% @guests.rooms.each do |room| %></p>
+  <p><%= room.suite %></p>
+    <% end %>
+<p>Rate: <% @guests.rooms.each do |room| %></p>
+  <p><%= room.rate %></p>
+    <% end %>
+<p>Hotel name: <% @guests.rooms.each do |room| %></p>
+  <p><%= room.hotel_id %></p>
+    <% end %>
+
+
