@@ -21,6 +21,10 @@ RSpec.describe "The Guest Show Page", type: :feature do
     @room3.guests << @guest1
   end
 
+  # =========================
+  # STORY 1: GUEST SHOW TESTS
+  # =========================
+
   it "I see a guest's name" do
     visit "/guests/#{@guest1.id}"
     
@@ -93,4 +97,55 @@ RSpec.describe "The Guest Show Page", type: :feature do
       expect(page).to_not have_css("div#room-#{@room3.id}")
     end
   end
+  # =================
+  # END STORY 1 TESTS
+  # =================
+
+  # ====================================
+  # STORY 2: ADD A GUEST TO A ROOM TESTS
+  # ====================================
+
+  it "I see a form to add a room to this guest" do
+    visit "/guests/#{@guest2.id}"
+
+    within("div#add-room") do
+      expect(page).to have_css("form")
+      expect(page).to have_field(:room_id, type: "text")
+    end
+  end
+
+  describe "When I fill in a field with the ID of an existing room and click 'submit'" do
+    it "Then I am redirected back to the guest's show page see the room now listed under this guest's rooms" do
+      visit "/guests/#{@guest2.id}"
+      
+      expect(@guest2.rooms).to_not include(@room2)
+      within("div#guest_room_history") do
+        expect(page).to_not have_css("div#room-#{@room2.id}")
+      end
+
+      within("div#add-room") do
+        fill_in "room_id", with: "#{@room2.id}"
+        click_button "Submit"
+      end
+
+      expect(current_path).to eq("/guests/#{@guest2.id}")
+
+      within("div#guest_room_history") do
+        expect(page).to have_css("div#room-#{@room2.id}")
+        within("div#room-#{@room2.id}") do
+          expect(page).to have_content(@room2.suite)
+          expect(page).to have_content(@room2.rate)
+          expect(page).to have_content(@hotel.name)
+        end
+      end
+
+      @guest2.reload
+      expect(@guest2.rooms).to include(@room2)
+    end
+  end
+
+  # =================
+  # END STORY 2 TESTS
+  # =================
+
 end
