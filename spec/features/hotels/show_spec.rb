@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe 'Hotels Show Page', type: :feature do
   describe "When I visit a hotel's show page" do
     before :each do
-      @ritz = Hotel.create!(name: "Hotel Ritz", location: "Paris")
       @beverly = Hotel.create!(name: "Beverly Hills Hotel", location: "California")
       
       @room_1 = @beverly.rooms.create!(rate: 500, suite: "Madonna Suite")

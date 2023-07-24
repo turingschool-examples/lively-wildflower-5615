@@ -1,0 +1,7 @@
+<h1><%= @hotel.name %></h1>
+<div id="guest-list">
+  <h2>Guest Who Have Stayed Here:</h2>
+  <% @hotel.prev_guests.each do |name| %>
+    <p>- <%= name %></p>
+  <% end %>
+</div>
