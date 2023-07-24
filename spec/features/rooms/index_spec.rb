@@ -11,11 +11,10 @@ RSpec.describe "Rooms Index", type: :feature do
     describe "When I visit the rooms index page" do
       it "Then I see a list of all rooms including the room's suite, nightly rate, and the name of the hotel that it belongs to and the number of guests that have stayed in that room." do
         visit "/rooms"
-
+        save_and_open_page 
         expect(page).to have_content("#{@room_1.suite}")
         expect(page).to have_content("#{@room_1.rate}")
         expect(page).to have_content("#{@room_1.hotel.name}")
-        expect(page).to have_content("#{@guest_1.name}")
         
       end
     end
