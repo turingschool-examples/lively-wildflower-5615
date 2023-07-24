@@ -35,7 +35,7 @@ RSpec.describe Guest, type: :feature do
       click_button 'Add Room to Guest'
 
       expect(current_path).to eq(guest_path(@guest1))
-      expect(page).to have_content(@stay2.room.suite)
+      expect(page).to have_content(@room2.suite)
     end
   end
 end
