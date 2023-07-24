@@ -1,0 +1,10 @@
+<div class="describe">
+  <h2>Add a Room to this Guest:</h2>
+  <%= form_with url: add_room_guest_path(@guest), method: :post do |form| %>
+    <div class="field">
+      <%= form.label :room_id, "Room ID:" %>
+      <%= form.text_field :room_id %>
+    </div>
+    <%= form.submit "Add Room to Guest" %>
+  <% end %>
+</div>
