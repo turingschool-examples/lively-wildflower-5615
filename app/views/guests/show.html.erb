@@ -10,3 +10,11 @@
         <p>Hotel Name:</p> <%= room.hotel.name %>
     </li>
   <% end %>
+
+<h2>Add a Room</h2>
+  <%= form_with url: "/guests/#{@guest.id}", method: :post, local: true do |f| %>
+    <%= f.label :room_name, "Room Name" %>
+    <%= f.text_field :room_name %>
+
+    <%= f.submit "Add Room" %>
+  <% end %>

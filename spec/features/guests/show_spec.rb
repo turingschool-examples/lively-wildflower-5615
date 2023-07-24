@@ -41,4 +41,29 @@ RSpec.describe "guests show page" do
     expect(page).to have_content("150")
     expect(page).to have_content("Aspen Inn")
   end
+
+# Story 2
+# Add a Guest to a Room
+# As a visitor
+# When I visit a guest's show page
+# Then I see a form to add a room to this guest.
+# When I fill in a field with the id of an existing room
+# And I click submit
+# Then I am redirected back to the guest's show page
+# And I see the room now listed under this guest's rooms.
+# (You do not have to test for a sad path, 
+# for example if the ID submitted is not an existing room)
+
+  it "has a form to add a room to this guest" do
+    hotel_1 = Hotel.create!(name: "Aspen Inn", location: "Aspen" )
+    room_1 = hotel_1.rooms.create!(rate: 125, suite: "Presidential")
+
+    guest_1 = Guest.create!(name: "Charlie Day", nights: 3)
+
+    visit "/guests/#{guest_1.id}"
+
+    save_and_open_page
+
+    expect(page).to have_field("room_name")
+  end
 end
