@@ -9,5 +9,7 @@
     <p>Hotel: <%= stay.room.hotel.name %></p>
   </div>
 <% end %>
+<!-- Renders _description_form_index.html.erb partial -->
+<%= render partial: 'add_room_form', locals: { guest: @guest } %>
 <%# <%= link_to "Update #{@guest.name}", edit_guest_path(guest) %>
 <%# <%= link_to "Delete #{@guest.name}", delete_guest_path(guest), method: :delete %>
