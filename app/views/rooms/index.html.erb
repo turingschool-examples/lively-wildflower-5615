@@ -1,0 +1,8 @@
+<h1>All rooms</h1>
+<% @rooms.each do |room| %>
+  <div class="room-<%= room.id %>"> 
+    <%= room.suite %>
+    <%= room.rate %>
+    <%= room.hotel.name %>
+    <p>Total Guests: <%= room.total_guests %></p>
+<% end %>
