@@ -16,7 +16,7 @@ RSpec.describe 'Guest Show', type: :feature do
   it 'displays the guest name, rooms they have stayed in, nightly rate and hotel' do 
   
     visit "/guests/#{@guest_1.id}"
-
+    
     expect(page).to have_content(@guest_1.name)
     expect(page).to have_content(@guest_1.nights)
     expect(page).to have_content(@room_1.suite)
@@ -34,7 +34,7 @@ RSpec.describe 'Guest Show', type: :feature do
       fill_in :room_id, with: @room_2.id
       click_button "Add a Room"
     end
-
+    
     expect(current_path).to eq("/guests/#{@guest_1.id}")
     expect(page).to have_content(@room_2.suite)
   end

@@ -1,0 +1,10 @@
+<h1> All Rooms at <%= @hotel %></h1> <hr>
+<section class='rooms'>
+<% @rooms.each do |room| %>
+  <p> Suite Name: <%= room.suite %> </p>
+  <p> Nightly Rate: <%= room.rate %> </p>
+  <b> Hotel Name: <%= @hotel %> </b>
+  <p> How many guest's have stayed?: <%= @count %></p><br><hr><hr><br>
+<% end %>
+
+</section>
