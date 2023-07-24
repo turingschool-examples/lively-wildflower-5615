@@ -27,7 +27,15 @@ RSpec.describe 'Guest Show', type: :feature do
   it 'displays a form to add a new room to the guest' do 
 
     visit "/guests/#{@guest_1.id}"
+    
+    expect(page).to have_button("Add a Room")
 
-    expect(page).to have_content("Add a Room")
+    within "#add_room" do 
+      fill_in :room_id, with: @room_2.id
+      click_button "Add a Room"
+    end
+
+    expect(current_path).to eq("/guests/#{@guest_1.id}")
+    expect(page).to have_content(@room_2.suite)
   end
 end
