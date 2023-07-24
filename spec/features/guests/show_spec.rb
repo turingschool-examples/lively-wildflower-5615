@@ -63,5 +63,27 @@ RSpec.describe "guests" do
         expect(page).to_not have_content(@room_1.suite)
       end
     end  
+
+    it "has a form to add the guest to a room" do
+      visit "/guests/#{@guest_1.id}"
+
+      within "#Rooms" do
+        expect(page).to_not have_content(@room_3.suite)
+      end
+
+      within "#Add_room" do
+        expect(page).to have_content("Please enter a valid room ID:")
+        fill_in("room_id", with: @room_3.id)
+        click_button("Submit")
+        expect(current_path).to eq("/guests/#{@guest_1.id}")
+      end
+
+      within "#Rooms" do
+        expect(page).to have_content(@room_3.suite)
+        expect(page).to have_content(@room_3.rate)
+        expect(page).to have_content(@room_3.hotel.name)
+        expect(page).to_not have_content(@room_4.suite)
+      end
+    end  
   end
 end
