@@ -23,6 +23,17 @@ RSpec.describe "the guests show page" do
     expect(page).to have_content("Hotel: #{hotel_1.name}")
     expect(page).to_not have_content("Suite: #{room_3.suite}")
     expect(page).to_not have_content("Nightly Rate: #{room_3.rate}")
+  end
 
+  it "has a form for adding a room to a guest" do
+    within(".new_room") do
+      fill_in :id, with: room_3.id
+      click_button "Save"
+
+      expect(current_path).to eq("/guests/#{guest_1.id}")
+    end
+
+    expect(page).to have_content("Suite: #{room_3.suite}")
+    expect(page).to have_content("Nightly Rate: #{room_3.rate}")
   end
 end
