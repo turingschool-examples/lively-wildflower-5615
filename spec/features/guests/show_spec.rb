@@ -52,8 +52,8 @@ RSpec.describe "Guests Show Page" do
   it "has a form which allows user to add a room to the guest" do
     visit "/guests/#{@guest_5.id}"
     expect(page).to_not have_content(@room_3.suite)
-    
-    fill_in(:room_id, with: @room_3.id)
+    save_and_open_page
+    fill_in(:room_id, with: "#{@room_3.id}")
     click_button("Submit")
     
     expect(current_path).to eq("/guests/#{@guest_5.id}")

@@ -2,5 +2,15 @@
 <% @guest.rooms.each do |room| %>
 <p><%= room.suite %></p>
 <p><%= room.rate %></p>
-<p><%= room.hotel.name %></p>
+<p><%= room.hotel.name %></p><br><br>
+<% end %>
+
+<br><br>
+
+<h3>Add this guest to a room:</h3>
+<%= form_with url: "/guests/#{@guest.id}/rooms/#{:room_id}", method: :post, params: {room_id: :room_id, guest_id: @guest.id} local: true do |form| %>
+<p><%= form.label "Enter room id here" %></p>
+<p><%= form.text_field :room_id %></p>
+<p><%= form.submit "Submit" %></p>
+
 <% end %>
