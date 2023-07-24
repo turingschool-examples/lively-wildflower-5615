@@ -5,7 +5,7 @@ RSpec.describe "The Guest's Show Page" do
     @hotel1 = Hotel.create!(name: "Echo Mountain Inn", location: "Echo Mountain")
     @hotel2 = Hotel.create!(name: "North Face Inn", location: "Echo Mountain")
     @room1 = Room.create!(hotel: @hotel1, rate: 120, suite: "Sophomore")
-    @room2 = Room.create!(hotel: @hotel1, rate: 100, suite: "Fresnman")
+    @room2 = Room.create!(hotel: @hotel1, rate: 100, suite: "Freshman")
     @room3 = Room.create!(hotel: @hotel2, rate: 200, suite: "Presdential")
     @room4 = Room.create!(hotel: @hotel2, rate: 225, suite: "Ambassador")
     @guest1 = Guest.create!(name: "Charlize Theron", nights: 3)
@@ -28,7 +28,7 @@ RSpec.describe "The Guest's Show Page" do
     expect(page).to have_content("Add a Room")
     fill_in "room_id", with: @room2.id
     click_button "Submit"
-    save_and_open_page
+    # save_and_open_page
     expect(current_path).to eq("/guests/#{@guest1.id}")
     expect(page).to have_content("Charlize Theron")
   end
