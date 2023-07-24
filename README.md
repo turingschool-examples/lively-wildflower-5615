@@ -46,16 +46,16 @@ When you run `bundle exec rspec` you should have 2 passing tests.
 
 You have been contracted by a luxurious mountain ski hotel & resort to keep track of all of the hotels, the rooms of that hotel, and the guests that stay there. 
 
-* Hotels have a name and a location.
-  * ex: `name: 'Echo Mountain Inn', location: 'Echo Mountain'`
-* Rooms have a rate (price per night), and a suite designation. (For simplicity, let's assume the rate is a whole dollar price and use an integer.)
-  * ex: `rate: 125, suite: "Presidential"`
-* Guests have a name and the number of nights they'll be staying.
-  * ex: `name: 'Charlize Theron', nights: 3`
+<!-- * Hotels have a name and a location. -->
+  <!-- * ex: `name: 'Echo Mountain Inn', location: 'Echo Mountain'` -->
+<!-- * Rooms have a rate (price per night), and a suite designation. (For simplicity, let's assume the rate is a whole dollar price and use an integer.) -->
+  <!-- * ex: `rate: 125, suite: "Presidential"` -->
+<!-- * Guests have a name and the number of nights they'll be staying. -->
+  <!-- * ex: `name: 'Charlize Theron', nights: 3` -->
 
 ## Model Setup
-* Hotels have many Rooms. 
-* Rooms belong to a Hotel.
+<!-- * Hotels have many Rooms.  -->
+<!-- * Rooms belong to a Hotel. -->
 * Guests have many Rooms.
 * Rooms have many Guests.
 
