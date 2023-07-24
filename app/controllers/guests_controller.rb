@@ -8,10 +8,6 @@ class GuestsController < ApplicationController
     @stays = @guest.stays
   end
 
-  def update
-    @guest = Guest.find(params[:id])
-  end
-
   def add_room
     @guest = Guest.find(params[:id])
     room = Room.find(params[:room_id])
