@@ -41,24 +41,28 @@ RSpec.describe "rooms" do
         expect(page).to have_content(@room_1.suite)
         expect(page).to have_content(@room_1.rate)
         expect(page).to have_content(@room_1.hotel.name)
+        expect(page).to have_content(@room_1.guest_count)
       end
 
       within "#Deluxe" do
         expect(page).to have_content(@room_2.suite)
         expect(page).to have_content(@room_2.rate)
         expect(page).to have_content(@room_2.hotel.name)
+        expect(page).to have_content(@room_2.guest_count)
       end
 
       within "#Single" do
         expect(page).to have_content(@room_3.suite)
         expect(page).to have_content(@room_3.rate)
         expect(page).to have_content(@room_3.hotel.name)
+        expect(page).to have_content(@room_3.guest_count)
       end
 
       within "#Master" do
         expect(page).to have_content(@room_4.suite)
         expect(page).to have_content(@room_4.rate)
         expect(page).to have_content(@room_4.hotel.name)
+        expect(page).to have_content(@room_4.guest_count)
       end
     end
   end
