@@ -45,7 +45,7 @@ RSpec.describe "Guest Show" do
       click_on 'Submit'
       expect(page).to have_content("1 bedroom")
       expect(page).to have_content(25)
-      save_and_open_page
+      #save_and_open_page
     end
 
 
