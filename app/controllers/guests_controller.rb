@@ -3,4 +3,6 @@ class GuestsController < ApplicationController
     @guest = Guest.find(params[:id])
     @rooms = @guest.rooms
   end
+  
+
 end

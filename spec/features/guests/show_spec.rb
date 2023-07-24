@@ -62,8 +62,22 @@ RSpec.describe "guests show page" do
 
     visit "/guests/#{guest_1.id}"
 
-    save_and_open_page
+    expect(page).to have_field("room_id")
+  end
 
-    expect(page).to have_field("room_name")
+  it "it adds a room when I fill in the field of an id for an existing room and redirects back to guest show page" do
+    hotel_1 = Hotel.create!(name: "Aspen Inn", location: "Aspen" )
+    room_1 = hotel_1.rooms.create!(rate: 125, suite: "Presidential")
+
+    guest_1 = Guest.create!(name: "Charlie Day", nights: 3)
+
+    visit "/guests/#{guest_1.id}"
+
+    fill_in "room_id", with: room_1.id
+    click_button "Add Room"
+    
+    expect(current_path).to eq("/guests/#{guest_1.id}")
+    expect(page).to have_content("#{room_1.suite}")
+    expect(page).to have_content("#{room_1.hotel.name}")
   end
 end
