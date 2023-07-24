@@ -69,4 +69,40 @@ RSpec.describe "Guest show page" do
       end
     end
   end
+
+#   Story 2
+# Add a Guest to a Room
+
+# As a visitor
+# When I visit a guest's show page
+# Then I see a form to add a room to this guest.
+# When I fill in a field with the id of an existing room
+# And I click submit
+# Then I am redirected back to the guest's show page
+# And I see the room now listed under this guest's rooms.
+# (You do not have to test for a sad path, for example if the ID submitted is not an existing room)
+
+  describe "add room to guest form" do
+    it "exists on the page" do
+      visit "/guests/#{@charlize.id}"
+
+      expect(page).to have_content("Add room for this guest:")
+      expect(page).to have_field(:room_id)
+      expect(page).to have_button("Submit")
+    end
+
+    it "will add details of a room to the guest's page" do
+      visit "/guests/#{@charlize.id}"
+
+      expect(page).to_not have_content("Standard Suite")
+      expect(page).to_not have_content("Rate: 100 per night")
+
+      fill_in(:room_id, with: @room_3.id)
+      click_button("Submit")
+
+      expect(current_path).to eq("/guests/#{@charlize.id}")
+      expect(page).to have_content("Standard Suite")
+      expect(page).to have_content("Rate: 100 per night")
+    end
+  end
 end
