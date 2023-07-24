@@ -30,25 +30,25 @@ RSpec.describe 'Room Index Page', type: :feature do
         describe "When I visit the rooms index page" do
             it "Shows a list of all rooms with their suite,nightly rate, name of hotel it belongs to and count of guest stayed in that room" do
 
-                visit "rooms/index"
+                visit "rooms"
                 
-                within "room_#{@room_1.id}" do
+                within "#room_#{@room_1.id}" do
                     expect(page).to have_content(@room_1.suite)
                     expect(page).to have_content(@room_1.rate)
                     expect(page).to have_content(@room_1.hotel.name)
                     expect(page).to have_content("Guest: 3")
                 end
-                within "room_#{@room_2.id}" do
+                within "#room_#{@room_2.id}" do
                     expect(page).to have_content(@room_2.suite)
                     expect(page).to have_content(@room_2.rate)
                     expect(page).to have_content(@room_2.hotel.name)
-                    expect(page).to have_content("Guest: 1")
+                    expect(page).to have_content("Guest: 2")
                 end
-                within "room_#{@room_3.id}" do
+                within "#room_#{@room_3.id}" do
                     expect(page).to have_content(@room_3.suite)
                     expect(page).to have_content(@room_3.rate)
                     expect(page).to have_content(@room_3.hotel.name)
-                    expect(page).to have_content("Guest: 2")
+                    expect(page).to have_content("Guest: 1")
                 end
             end
         end
