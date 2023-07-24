@@ -16,14 +16,14 @@ def test_data
   @hyatt = Hotel.create!(name: "Hyatt", location: "Denver")
   @daysinn = Hotel.create!(name: "Days Inn", location: "Colorado Springs")
 
-  @room_1 = @motel_8.rooms.create!(rate: 25, suite: "Single")
-  @room_2 = @motel_8.rooms.create!(rate: 50, suite: "Double")
+  @motel_8_room_1 = @motel_8.rooms.create!(rate: 25, suite: "Single")
+  @motel_8_room_2 = @motel_8.rooms.create!(rate: 50, suite: "Double")
   
-  @room_3 = @hyatt.rooms.create!(rate: 220, suite: "Queen")
-  @room_4 = @hyatt.rooms.create!(rate: 400, suite: "Executive")
+  @hyatt_room_3 = @hyatt.rooms.create!(rate: 220, suite: "Queen")
+  @hyatt_room_4 = @hyatt.rooms.create!(rate: 400, suite: "Executive")
   
-  @room_5 = @daysinn.rooms.create!(rate: 100, suite: "Queen")
-  @room_6 = @daysinn.rooms.create!(rate: 150, suite: "King")
+  @daysinn_room_5 = @daysinn.rooms.create!(rate: 100, suite: "Queen")
+  @daysinn_room_6 = @daysinn.rooms.create!(rate: 150, suite: "King")
 
   @billy = Guest.create!(name: "Billy", nights: 8)
   @jane = Guest.create!(name: "Jane", nights: 2)
