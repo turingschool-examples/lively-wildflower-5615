@@ -1,6 +1,6 @@
 class Hotel < ApplicationRecord
   has_many :rooms
-  has_many :guests, through: :rooms
+
 
   # def hotel_guests
   #   select("guests.* FROM guests")
