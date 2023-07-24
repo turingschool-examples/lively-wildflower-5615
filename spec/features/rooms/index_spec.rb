@@ -15,7 +15,7 @@ RSpec.describe "Visitor Index" do
 
   it 'shows all the rooms, room details, guests that stayed in each room' do
     visit "/rooms" 
-    save_and_open_page
+    #save_and_open_page
     expect(page).to have_content(@room_1.rate)
     expect(page).to have_content(@room_1.suite)
     expect(page).to have_content(@room_1.hotel.name)
