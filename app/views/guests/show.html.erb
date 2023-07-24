@@ -5,3 +5,11 @@
   <p>Rate: <%= room.rate %></p>
   <p>Suite: <%= room.suite%></p>
 <% end %>
+<br>
+<div id="add_room"><br>
+  <%= form_with url: "/guests/#{@guest.id}", method: :create, local: true do |f| %>
+    <%= f.label :add_room_id %>
+    <%= f.number_field :add_room_id %>
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>

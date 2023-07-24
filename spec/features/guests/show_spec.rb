@@ -21,5 +21,22 @@ RSpec.describe "The Guest", type: :feature do
       expect(page).to have_content(@billy.rooms.second.rate)
       expect(page).to have_content(@billy.rooms.second.suite)
     end
+
+    it "displays a form to add an exisiting room to a guests show page" do
+      @jane.rooms.push(@hyatt_room_3)
+      @jane.rooms.push(@daysinn_room_6)
+      hyatt_room_8 = @hyatt.rooms.create!(rate: 400, suite: "Executive")
+
+      visit "/guests/#{@jane.id}"
+
+      within("#add_room") do
+        fill_in :add_room_id, with: hyatt_room_8.id
+        click_button "Submit"
+      end
+
+      expect(page).to have_content(@jane.rooms.third.hotel.name)
+      expect(@jane.rooms).to eq([@hyatt_room_3, @daysinn_room_6, hyatt_room_8])
+      expect(current_path).to eq("/guests/#{@jane.id}")
+    end
   end
 end
