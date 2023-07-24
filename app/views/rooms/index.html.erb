@@ -1,6 +1,7 @@
 <h1>Rooms Index</h1>
 <% @rooms.each do |room| %>
-  <h3>  <a href="<%= room_path(room) %>"><%= room.id %></a></h3>
+  <h3>  <a href="<%= room_path(room) %>">Room Number: <%= room.id %></a></h3>
+  <p>Hotel Name: <%= room.hotel.name %></p>
   <p>Rate: <%= room.rate %></p>
   <p>Suite: <%= room.suite %></p>
   <p>Hotel ID: <%= room.hotel_id %></p>

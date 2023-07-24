@@ -2,6 +2,7 @@
 <% @guests.each do |guest| %>
   <h3>  <a href="<%= guest_path(guest) %>"><%= guest.name %></a></h3>
   <p>ID: <%= guest.id %></p>
+  <p>Nights: <%= guest.nights %></p>
   <%= link_to "Edit #{guest.name}", edit_guest_path(guest) %>
   <%= link_to "Delete #{guest.name}", delete_guest_path(guest), method: :delete %>
 <% end %>
