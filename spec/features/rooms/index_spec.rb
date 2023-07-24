@@ -61,8 +61,6 @@ RSpec.describe "rooms index page" do
 
     visit "/rooms"
 
-    save_and_open_page
-
     expect(page).to have_content("Guest Count: 1")
     expect(page).to have_content("Guest Count: 2")
     expect(page).to have_content("Guest Count: 3")
