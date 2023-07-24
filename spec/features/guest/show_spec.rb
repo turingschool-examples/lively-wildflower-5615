@@ -23,7 +23,7 @@ RSpec.describe "Guest Show" do
       expect(page).to have_content(@room_1.rate)
       expect(page).to have_content(@room_1.suite)
       expect(page).to have_content(@room_1.hotel.name)
-      save_and_open_page
+      #save_and_open_page
     end
 
 
