@@ -9,4 +9,19 @@ RSpec.describe Room, type: :model do
     it { should have_many(:guest_rooms) }
     it { should have_many(:guests).through(:guest_rooms) }
   end
+
+  describe "instance methods" do
+    it "#guest_count" do
+      @hank.rooms.push(@hyatt_room_3)
+      @jane.rooms.push(@hyatt_room_3)
+      @barbie.rooms.push(@hyatt_room_3)
+
+      @barbie.rooms.push(@daysinn_room_6)
+      @billy.rooms.push(@daysinn_room_6)
+
+      expect(@hyatt_room_3.guest_count).to eq(3)
+      expect(@daysinn_room_6.guest_count).to eq(2)
+      expect(@hyatt_room_4.guest_count).to eq(0)
+    end
+  end
 end
