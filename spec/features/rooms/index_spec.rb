@@ -25,6 +25,10 @@ RSpec.describe "Rooms Index Page", type: :feature do
     @room3.guests << @guest1
   end
 
+  # ==========================
+  # STORY 3: ROOMS INDEX TESTS
+  # ==========================
+
   it "I see a list of all the rooms" do
     visit "/rooms"
 
@@ -104,4 +108,8 @@ RSpec.describe "Rooms Index Page", type: :feature do
       end
     end
   end
+
+  # =================
+  # END STORY 3 TESTS
+  # =================
 end
