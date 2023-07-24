@@ -12,7 +12,7 @@ room1 = hotel.rooms.create(rate: 200, suite: 'Super')
 room2 = hotel.rooms.create(rate: 100, suite: 'Double')
 room3 = hotel.rooms.create(rate: 50, suite: 'Standard')
 
-guest1 = Guest.create(name: 'Kye', nights: 6)
+guest1 = Guest.create(name: 'Kyle', nights: 6)
 guest2 = Guest.create(name: 'Martha', nights: 2)
 
 GuestsRoom.create(guest: guest1, room: room1)
