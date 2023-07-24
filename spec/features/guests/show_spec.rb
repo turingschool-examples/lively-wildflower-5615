@@ -8,9 +8,8 @@ RSpec.describe "guests show page" do
 
     @room_1 = @hotel_1.rooms.create!(rate: 125, suite: "Economy")
     @room_2 = @hotel_1.rooms.create!(rate: 500, suite: "Presidential")
-
+    
     GuestRoom.create!(guest: @guest_1, room: @room_1)
-    GuestRoom.create!(guest: @guest_1, room: @room_2)
   end
 
   describe "as a visitor" do
@@ -22,7 +21,20 @@ RSpec.describe "guests show page" do
         expect(page).to have_content(@hotel_1.name)
         expect(page).to have_content(@room_1.rate)
         expect(page).to have_content(@room_1.suite)
-        expect(page).to have_content(@room_2.rate)
+      end
+    end
+
+    describe "add a guest" do
+      it "I see a form to add a room to this guest. When I fill in a field with the id of an existing room, And I click submit, then I am redirected back to the guest's show page and see the room listed uder this guest's rooms" do
+        visit "/guests/#{@guest_1.id}"
+
+        expect(page).to_not have_content(@room_2.suite)
+        within("#add_guest") do
+          fill_in "room_id", with: @room_2.id
+          click_on "Submit"
+        end
+
+        expect(current_path).to eq("/guests/#{@guest_1.id}")
         expect(page).to have_content(@room_2.suite)
       end
     end
