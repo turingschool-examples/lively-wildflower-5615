@@ -16,15 +16,14 @@ RSpec.describe Guest, type: :feature do
     guest_1.rooms << room_2
     guest_1.save
    
+    visit "/guest/#{guest_1.id}"
 
-      visit "/guest/#{guest_1.id}"
-
-      expect(page).to have_content(guest_1.name)
-      expect(page).to have_content(room_1.suite)
-      expect(page).to have_content(room_1.rate)
-      expect(page).to have_content(hotel_1.name)
-      expect(page).to have_content(room_2.suite)
-      expect(page).to have_content(room_2.rate)
+    expect(page).to have_content(guest_1.name)
+    expect(page).to have_content(room_1.suite)
+    expect(page).to have_content(room_1.rate)
+    expect(page).to have_content(hotel_1.name)
+    expect(page).to have_content(room_2.suite)
+    expect(page).to have_content(room_2.rate)
   end
 
 #   Story 2
