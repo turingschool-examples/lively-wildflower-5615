@@ -16,9 +16,20 @@ RSpec.describe "The Guest's Show Page" do
     RoomGuest.create!(guest_id: @guest2.id, room_id: @room4.id)
   end
 
-  it "shows the Guest's name" do
+  it "shows the Guest's name and history" do
     visit "/guests/#{@guest1.id}"
+    # save_and_open_page
+    expect(page).to have_content("Charlize Theron")
+  end
+
+  it "has a form to add a new room for this guest" do
+    visit "/guests/#{@guest1.id}"
+    # save_and_open_page
+    expect(page).to have_content("Add a Room")
+    fill_in "room_id", with: @room2.id
+    click_button "Submit"
     save_and_open_page
+    expect(current_path).to eq("/guests/#{@guest1.id}")
     expect(page).to have_content("Charlize Theron")
   end
 end
