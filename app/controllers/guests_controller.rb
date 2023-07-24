@@ -10,8 +10,7 @@ class GuestsController < ApplicationController
 
   def add_room
     @guest = Guest.find(params[:id])
-    room = Room.find(params[:room_id])
-    @guest.rooms << room
+    @guest.add_room(params[:room_id])
     redirect_to guest_path(@guest)
   end
 
