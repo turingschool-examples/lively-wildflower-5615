@@ -37,7 +37,7 @@ RSpec.describe "Guest show page" do
   end
 
   describe "list of rooms the guest has stayed in" do
-    xit "includes room's suite, nightly rate, and name of hotel" do
+    it "includes room's suite, nightly rate, and name of hotel" do
       visit "/guests/#{@charlize.id}"
 
       expect(page).to have_content("This guest has stayed in the following rooms:")
@@ -47,13 +47,13 @@ RSpec.describe "Guest show page" do
       within("#room-#{@room_1.id}") do
         expect(page).to have_content("Presidential Suite")
         expect(page).to have_content("Rate: 125 per night")
-        expect(page).to have_content("Hotel: Echo Montain Inn")
+        expect(page).to have_content("Hotel: Echo Mountain Inn")
       end
 
       within("#room-#{@room_2.id}") do
         expect(page).to have_content("Honeymoon Suite")
         expect(page).to have_content("Rate: 140 per night")
-        expect(page).to have_content("Hotel: Echo Montain Inn")
+        expect(page).to have_content("Hotel: Echo Mountain Inn")
       end
 
       within("#room-#{@room_4.id}") do
