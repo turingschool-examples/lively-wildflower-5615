@@ -86,6 +86,22 @@ RSpec.describe 'Guests show page', type: :feature do
 
         expect(page).to have_content(@room_6.suite)
       end
+
+      it 'shows success message when room added' do
+        within("#add_room_form") do
+          fill_in :room_id, with: @room_6.id
+          click_button("Add Room to #{@guest_1.name}")
+        end
+        expect(page).to have_content("Room added successfully!")
+      end
+
+      it 'shows error message when room does not exist' do
+        within("#add_room_form") do
+          fill_in :room_id, with: 10
+          click_button("Add Room to #{@guest_1.name}")
+        end
+        expect(page).to have_content("Room ID invalid - Please enter existing room ID")
+      end
     end
   end
 end
