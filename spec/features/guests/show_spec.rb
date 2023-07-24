@@ -1,4 +1,4 @@
-require 'rails helper'
+require 'rails_helper'
 
 RSpec.describe "Guests Show Page" do
   before :each do
@@ -23,9 +23,27 @@ RSpec.describe "Guests Show Page" do
     @room_guest_5 = RoomGuest.create!(room: @room_4, guest: @guest_3)
     @room_guest_6 = RoomGuest.create!(room: @room_5, guest: @guest_4)
   end
-  it "displays the guests name" do
-    visit "/guest"
+  it "displays the guests name and room suites they've stayed in" do
+    visit "/guests/#{@guest_5.id}"
+    
+    expect(page).to have_content(@guest_5.name)
+    expect(page).to have_content(@room_1.suite)
+    
+    visit "/guests/#{@guest_3.id}"
+    
+    expect(page).to have_content(@guest_3.name)
+    expect(page).to have_content(@room_4.suite)
   end
 
+  it "displays each room's nightly rate, and the name of the hotel that it belongs to" do
+    visit "/guests/#{@guest_5.id}"
 
+    expect(page).to have_content(@room_1.rate)
+    expect(page).to have_content(@hotel.name)
+
+    visit "/guests/#{@guest_3.id}"
+    
+    expect(page).to have_content(@room_4.rate)
+    expect(page).to have_content(@hotel.name)
+  end
 end
