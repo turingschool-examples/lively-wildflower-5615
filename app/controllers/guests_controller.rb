@@ -8,17 +8,8 @@ class GuestsController < ApplicationController
     @stays = @guest.stays
   end
 
-  def edit
-    @guest = Guest.find(params[:id])
-  end
-
   def update
     @guest = Guest.find(params[:id])
-  end
-
-  def destroy
-    Guest.find(params[:id]).destroy
-    redirect_to guests_path
   end
 
   def add_room
@@ -26,5 +17,11 @@ class GuestsController < ApplicationController
     room = Room.find(params[:room_id])
     @guest.rooms << room
     redirect_to guest_path(@guest)
+  end
+
+  private
+
+  def guest_params
+    params.require(:guest).permit(:name, :nights)
   end
 end
