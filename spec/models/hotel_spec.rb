@@ -10,6 +10,8 @@ RSpec.describe Hotel, type: :model do
     @room_1 = @hotel_1.rooms.create!(rate: 125, suite: "Economy")
     @room_2 = @hotel_1.rooms.create!(rate: 500, suite: "Presidential")
     
+    # three guest rooms to test for .distinct
+    GuestRoom.create!(guest: @guest_1, room: @room_2)
     GuestRoom.create!(guest: @guest_1, room: @room_1)
     GuestRoom.create!(guest: @guest_2, room: @room_1)
   end
