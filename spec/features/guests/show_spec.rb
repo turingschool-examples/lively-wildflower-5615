@@ -28,13 +28,35 @@ RSpec.describe "/guests/:id", type: :feature do
 
       it "I see a list of all the rooms they've stayed in including the room's suite, nightly rate, and the name of the hotel that it belongs to." do
         visit "/guests/#{@guest_1.id}"
-        save_and_open_page
+        
         expect(page).to have_content(@room_1.suite)
         expect(page).to have_content(@room_1.rate)
         expect(page).to have_content(@hotel_1.name)
         expect(page).to_not have_content(@room_3.suite)
         expect(page).to_not have_content(@room_3.rate)
         expect(page).to_not have_content(@hotel_3.name)
+      end
+
+      it "I see a form to add a room to this guest" do
+        visit "/guests/#{@guest_1.id}"
+
+        expect(page).to have_field('Add Room:')
+        expect(page).to have_button('Submit')
+      end
+
+
+      it "When I fill in a field with the id of an existing room and click submit, I am redirected back to the guest's show page, and I see the room now listed under this guest's rooms" do
+        visit "/guests/#{@guest_1.id}"
+
+        within('#add_room') do
+          fill_in 'Add Room:', with: @room_2.id
+          click_button 'Submit'
+        end
+        save_and_open_page
+        expect(current_path).to eq("/guests/#{@guest_1.id}")
+        expect(page).to have_content(@room_2.suite)
+        expect(page).to have_content(@room_2.rate)
+        expect(page).to have_content(@hotel_1.name)
       end
     end
   end

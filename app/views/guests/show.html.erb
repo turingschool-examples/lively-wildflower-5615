@@ -6,3 +6,10 @@
   <p>Room Rate: <%= room.rate %></p>
   <p>Hotel: <%= room.hotel.name %>
 <% end %>
+<div id="add_room">
+<%= form_with url: "/guests/#{@guest.id}", method: :post do |f| %>
+  <%= f.label :room_id, "Add Room:" %>
+  <%= f.text_field :room_id %>
+  <%= f.submit "Submit" %>
+<% end %>
+</div>
