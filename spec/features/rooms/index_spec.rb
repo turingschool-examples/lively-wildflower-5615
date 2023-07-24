@@ -11,7 +11,7 @@ RSpec.describe "rooms" do
 
     @room_1 = @hotel_1.rooms.create!(rate: 125, suite: "Economy")
     @room_2 = @hotel_1.rooms.create!(rate: 175, suite: "Deluxe")
-    @room_3 = @hotel_2.rooms.create!(rate: 90, suite: "Single bed")
+    @room_3 = @hotel_2.rooms.create!(rate: 90, suite: "Single")
     @room_4 = @hotel_2.rooms.create!(rate: 135, suite: "Master")
     
     @guest_1 = Guest.create!(name: "Phillip", nights: 3)
@@ -22,14 +22,14 @@ RSpec.describe "rooms" do
     @guest_room_1 = GuestRoom.create!(guest_id: @guest_1.id, room_id: @room_1.id)
     @guest_room_2 = GuestRoom.create!(guest_id: @guest_1.id, room_id: @room_2.id)
     @guest_room_3 = GuestRoom.create!(guest_id: @guest_2.id, room_id: @room_3.id)
-    @guest_room_4 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_4.id)
+    @guest_room_4 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_3.id)
     @guest_room_5 = GuestRoom.create!(guest_id: @guest_3.id, room_id: @room_1.id)
   end
 
   describe "index page" do
     it "shows list of all rooms, including room's suite, nightly rate, hotel it belongs to, and number of guests that have stayed there" do
       visit "/rooms"
-
+      
       within "#Rooms" do
         expect(page).to have_content(@room_1.suite)
         expect(page).to have_content(@room_2.suite)
