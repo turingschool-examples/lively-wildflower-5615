@@ -1,6 +1,24 @@
 <h1>Guest Show Page</h1>
 
-<div id="guest-info">
+<div id="guest_info">
   <h2>Guest Info</h2>
   <p><b>NAME: </b><%= @guest.name %></p>
 </div>
+
+<div id="guest_room_history">
+  <h2><%= @guest.name %>'s Room History</h2>
+  
+  <% @guest.rooms.each do |room| %>
+    <div id="room-<%= room.id %>">
+      <h3><%= room.suite %> Suite</h3>
+      <ul>
+        <p><b>RATE: </b>$<%= room.rate %>.00 per night</p>
+        <p><b>HOTEL: </b>$<%= room.hotel_name %></p>
+      </ul>
+    <div>
+  <% end %>
+</div>
+
+
+<!-- Idea if I have time: Maybe put in a partial for displaying a hotel? -->
+
