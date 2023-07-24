@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Hotel, type: :model do
+RSpec.describe "hotel show page" do
   before(:each) do
     @hotel_1 = Hotel.create!(name: "Hotel California", location: "California")
 
@@ -14,13 +14,13 @@ RSpec.describe Hotel, type: :model do
     GuestRoom.create!(guest: @guest_2, room: @room_1)
   end
 
-  describe "relationships" do
-    it { should have_many :rooms }
-  end
+  describe "as a visitor" do
+    describe "when I visit a hotel's show page"
+      it "I see a unique list of all guests that have stayed at this hotel" do
+        visit "/hotels/#{@hotel_1.id}" 
 
-  describe "#instance_methods" do
-    it "can list all guests of the hotel" do
-      expect(@hotel_1.list_of_guests).to eq([@guest_1, @guest_2])
-    end
+        expect(page).to have_content(@guest_1.name)
+        expect(page).to have_content(@guest_2.name)
+      end
   end
 end
