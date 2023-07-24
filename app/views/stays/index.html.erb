@@ -1,0 +1,6 @@
+<h1>Stays Index</h1>
+<% @stays.each do |stay| %>
+  <h3>  <a href="<%= stay_path(stay) %>"><%= stay.id %></a></h3>
+  <p>Room ID: <%= stay.room_id %></p>
+  <p>Guest ID: <%= stay.guest_id %></p>
+<% end %>

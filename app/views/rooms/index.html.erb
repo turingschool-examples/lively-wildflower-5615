@@ -1,0 +1,9 @@
+<h1>Rooms Index</h1>
+<% @rooms.each do |room| %>
+  <h3>  <a href="<%= room_path(room) %>"><%= room.id %></a></h3>
+  <p>Rate: <%= room.rate %></p>
+  <p>Suite: <%= room.suite %></p>
+  <p>Hotel ID: <%= room.hotel_id %></p>
+  <%= link_to "Edit #{room.id}", edit_room_path(room) %>
+  <%= link_to "Delete #{room.id}", delete_room_path(room), method: :delete %>
+<% end %>

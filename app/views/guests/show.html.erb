@@ -1,0 +1,13 @@
+<h1><%= @guest.name %></h1>
+<h3>Nights: <%= @guest.nights %></h3>
+<br>
+<h2>Rooms</h2>
+<% @stays.each do |stay| %>
+  <div>
+    <h4>Suite: <%= stay.room.suite %></h4>
+    <p>Rate: <%= stay.room.rate %></p>
+    <p>Hotel: <%= stay.room.hotel.name %></p>
+  </div>
+<% end %>
+<%# <%= link_to "Update #{@guest.name}", edit_guest_path(guest) %>
+<%# <%= link_to "Delete #{@guest.name}", delete_guest_path(guest), method: :delete %>

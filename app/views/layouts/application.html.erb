@@ -4,12 +4,23 @@
     <title>BaseNew</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
+    <!-- Main Menu -->
+    <nav class="main-menu">
+      <%= link_to "Home", root_path %>
+      <%= link_to "Hotels", hotels_path %>
+      <%= link_to "Guests", guests_path %>
+      <%= link_to "Rooms", rooms_path %>
+      <%= link_to "Stays", stays_path %>
+    </nav>
     <%= yield %>
   </body>
 </html>
