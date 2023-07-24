@@ -28,6 +28,7 @@ RSpec.describe "Guests Show Page" do
     
     expect(page).to have_content(@guest_5.name)
     expect(page).to have_content(@room_1.suite)
+    expect(page).to have_content(@room_2.suite)
     
     visit "/guests/#{@guest_3.id}"
     
@@ -39,11 +40,23 @@ RSpec.describe "Guests Show Page" do
     visit "/guests/#{@guest_5.id}"
 
     expect(page).to have_content(@room_1.rate)
-    expect(page).to have_content(@hotel.name)
+    expect(page).to have_content(@room_2.rate)
+    expect(page).to have_content(@hotel.name).twice
 
     visit "/guests/#{@guest_3.id}"
     
     expect(page).to have_content(@room_4.rate)
     expect(page).to have_content(@hotel.name)
+  end
+
+  it "has a form which allows user to add a room to the guest" do
+    visit "/guests/#{@guest_5.id}"
+    expect(page).to_not have_content(@room_3.suite)
+    
+    fill_in(:room_id, with: @room_3.id)
+    click_button("Submit")
+    
+    expect(current_path).to eq("/guests/#{@guest_5.id}")
+    expect(page).to have_content(@room_3.suite)
   end
 end
