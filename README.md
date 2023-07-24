@@ -22,7 +22,7 @@ When you run `bundle exec rspec` you should have 2 passing tests.
 * Read each story carefully before you start working.
 * Commit Frequently, about every 15 - 30 minutes
 * Push your code to your fork **once the time is up (not before!)**
-* The use of scaffolding is not permitted on this assessment. 
+* The use of scaffolding is not permitted on this assessment.
 
 ## Submission
 
@@ -44,7 +44,7 @@ When you run `bundle exec rspec` you should have 2 passing tests.
 
 ## Challenge Description
 
-You have been contracted by a luxurious mountain ski hotel & resort to keep track of all of the hotels, the rooms of that hotel, and the guests that stay there. 
+You have been contracted by a luxurious mountain ski hotel & resort to keep track of all of the hotels, the rooms of that hotel, and the guests that stay there.
 
 * Hotels have a name and a location.
   * ex: `name: 'Echo Mountain Inn', location: 'Echo Mountain'`
@@ -54,12 +54,12 @@ You have been contracted by a luxurious mountain ski hotel & resort to keep trac
   * ex: `name: 'Charlize Theron', nights: 3`
 
 ## Model Setup
-* Hotels have many Rooms. 
+* Hotels have many Rooms.
 * Rooms belong to a Hotel.
 * Guests have many Rooms.
 * Rooms have many Guests.
 
-Some of the initial model set up and testing has been done for you. Make sure your models & relationships are ready before starting user stories. You do not need to test for or create any model validations. 
+Some of the initial model set up and testing has been done for you. Make sure your models & relationships are ready before starting user stories. You do not need to test for or create any model validations.
 
 ## User Stories
 
