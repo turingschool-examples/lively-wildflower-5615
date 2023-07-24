@@ -1,6 +1,15 @@
 <%= @guest.name %>
-<% @guest.rooms.each do |room| %>
-  <%= room.suite %>
-  <%= room.rate %>
-  <%= room.hotel.name %>
-<% end %>
+<section id="room_list">
+  <% @guest.rooms.each do |room| %>
+    <%= room.suite %>
+    <%= room.rate %>
+    <%= room.hotel.name %>
+  <% end %>
+</section>
+
+<section id="add_room_form">
+  <%= form_with url: add_room_to_guest_path(@guest), method: :post, local: true do |form| %>
+    <%= form.text_field :room_id, value: "Enter Room ID" %>
+    <%= form.submit "Add Room" %>
+  <% end %>
+</section>

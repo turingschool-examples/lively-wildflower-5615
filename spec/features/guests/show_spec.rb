@@ -23,6 +23,23 @@ RSpec.describe "Guest Show", type: :feature do
         expect(page).to have_content(@room_1.rate)
         expect(page).to have_content(@room_1.hotel.name)
       end
+
+      it "Then I see a form to add a room to this guest." do
+        visit "/guests/#{@guest_1.id}"
+
+        expect(page).to have_css("#add_room_form")
+      end
+
+      it "When I fill in a field with the id of an existing room And I click submit Then I am redirected back to the guest's show page And I see the room now listed under this guest's rooms." do
+        visit "/guests/#{@guest_1.id}"
+        fill_in :room_id, with: "#{@room_1.id}"
+        click_button "Add Room"
+
+        expect(current_path).to eq("/guests/#{@guest_1.id}")
+        within("#room_list") do
+          expect(page).to have_content("#{@room_1.suite}")
+        end
+      end
     end
   end
 end
