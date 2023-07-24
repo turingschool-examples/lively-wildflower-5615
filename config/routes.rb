@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   get "/guests/:id", to: "guests#show"
+  post "/guest_rooms", to: "guest_rooms#create"
 end
